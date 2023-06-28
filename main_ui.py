@@ -50,14 +50,18 @@ class App(ctk.CTk):
 
         self.checkbox_slider_frame = ctk.CTkFrame(self.fr_nav)
         self.checkbox_slider_frame.pack(fill=ctk.X)
-        self.chb_var_show_ans = ctk.IntVar()
-        self.chb_var_ = ctk.IntVar()
+        self.chb_show_ans_var = ctk.IntVar()
+        self.chb_show_stat_var = ctk.IntVar()
+        self.chb_two_students_var = ctk.IntVar()
         self.checkbox_1 = ctk.CTkCheckBox(master=self.checkbox_slider_frame, text="Show Answer immediately",
-                                          variable=self.chb_var_show_ans)
+                                          variable=self.chb_show_stat_var)
         self.checkbox_1.pack(pady=5, anchor=ctk.W, padx=10)
         self.checkbox_2 = ctk.CTkCheckBox(master=self.checkbox_slider_frame, text="Show Stat immediately",
-                                          variable=self.chb_var_)
+                                          variable=self.chb_two_students_var)
         self.checkbox_2.pack(pady=5, anchor=ctk.W, padx=10)
+        self.checkbox_3 = ctk.CTkCheckBox(master=self.checkbox_slider_frame, text="Two Students",
+                                          variable=self.chb_two_students_var)
+        self.checkbox_3.pack(pady=5, anchor=ctk.W, padx=10)
 
         # Button Exit
         self.btn_exit = ctk.CTkButton(self.fr_nav, width=200, height=40, text="Exit", command=self.app_close,
