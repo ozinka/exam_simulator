@@ -38,7 +38,7 @@ class ExamSettingsFrame(ctk.CTkFrame):
         self.checkbox_1 = ctk.CTkCheckBox(master=self.checkbox_frame, text="Show Answer immediately",
                                           variable=self.chb_show_ans_var)
         self.checkbox_1.pack(pady=5, anchor=ctk.W, padx=10)
-        self.checkbox_2 = ctk.CTkCheckBox(master=self.checkbox_frame, text="Show Stat immediately",
+        self.checkbox_2 = ctk.CTkCheckBox(master=self.checkbox_frame, text="Show Stats immediately",
                                           variable=self.chb_show_stat_var)
         self.checkbox_2.pack(pady=5, anchor=ctk.W, padx=10)
         self.checkbox_3 = ctk.CTkCheckBox(master=self.checkbox_frame, text="Two Students",
@@ -52,7 +52,7 @@ class ExamSettingsFrame(ctk.CTkFrame):
 
         # Button Start Exam
         self.btn_start_exam = ctk.CTkButton(self, text="Start Exam", width=200, height=40, fg_color="#00cc6a",
-                                            command=self.start_exam)
+                                            command=self.start_exam, state="disabled")
         self.btn_start_exam.pack(pady=(0, 20), padx=20)
 
         # Button Cancel

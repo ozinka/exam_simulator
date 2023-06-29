@@ -17,8 +17,7 @@ class App(ctk.CTk):
 
         # Configure window
         self.title("Exam Simulator")
-        self.restore_settings()
-        self.minsize(600, 400)
+        self.minsize(600, 500)
         # Stay Always On top
         self.wm_attributes("-topmost", 1)
         # Exit confirmation
@@ -31,31 +30,22 @@ class App(ctk.CTk):
                        "ExamSettingsFrame": ExamSettingsFrame(self),
                        "ExamFrame": ExamFrame(self),
                        }
-        self.select_frame()
+        self.select_frame("DumpFrame")
+        self.restore_settings()
 
     def restore_settings(self):
-        with open('main.ini', 'w') as configfile:  # create file if not exist
-            pass
         config = configparser.ConfigParser()
         config.read('main.ini')
-        print(self.wm_geometry())
         if config.has_option('GENERAL', 'position'):
-            self.geometry(str(config.get('GENERAL', 'position')))
-            print(self.wm_geometry())
-            self.update()
-            print(self.wm_geometry())
+            self.geometry(config.get('GENERAL', 'position'))
         else:
-            self.geometry("500x500+1500+800")
-            self.update()
-            print(self.wm_geometry())
+            self.geometry("500x500+500+200")
 
     def save_settings(self):
         config = configparser.ConfigParser()
         config['GENERAL'] = {
-            'position': f'{self.wm_geometry()}'
-            # 'position': f'{self.winfo_width()}x{self.winfo_height()}+{self.winfo_x()}+{self.winfo_y()}'
+            'position': f'{self.geometry()}'
         }
-        print(self.wm_geometry())
         with open('main.ini', 'w') as configfile:  # save
             config.write(configfile)
 
@@ -65,7 +55,7 @@ class App(ctk.CTk):
         if fr:
             self.frames[fr].pack(fill=ctk.BOTH, expand=True)
         else:
-            self.frames["ExamSettingsFrame"].pack(fill=ctk.BOTH, expand=True)
+            self.frames["MainFrame"].pack(fill=ctk.BOTH, expand=True)
 
     def app_close(self):
         self.save_settings()
