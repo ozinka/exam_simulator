@@ -11,7 +11,7 @@ class ExamSettingsFrame(ctk.CTkFrame):
 
         # Radiobutton frame
         self.radiobutton_frame = ctk.CTkFrame(self, width=500)
-        self.radiobutton_frame.pack(pady=5)
+        self.radiobutton_frame.pack(pady=5, side=ctk.LEFT, anchor=ctk.N)
 
         self.rd_timer = ctk.IntVar(value=1)
         self.label_radio_group = ctk.CTkLabel(master=self.radiobutton_frame, text="Timer")
