@@ -6,10 +6,7 @@ from exam_settings import ExamSettingsFrame
 from exam import ExamFrame
 import configparser
 
-# System settings
-ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
-
 
 class App(ctk.CTk):
     def __init__(self):
@@ -41,10 +38,16 @@ class App(ctk.CTk):
         else:
             self.geometry("500x500+500+200")
 
+        if config.has_option('GENERAL', 'theme'):
+            ctk.set_appearance_mode(config.get('GENERAL', 'theme'))
+        else:
+            ctk.set_appearance_mode("System")
+
     def save_settings(self):
         config = configparser.ConfigParser()
         config['GENERAL'] = {
-            'position': f'{self.geometry()}'
+            'position': f'{self.geometry()}',
+            'theme': ctk.get_appearance_mode()
         }
         with open('main.ini', 'w') as configfile:  # save
             config.write(configfile)
