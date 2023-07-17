@@ -1,5 +1,6 @@
 import customtkinter as ctk
-from qa_parser import *
+from question import *
+import string
 
 
 class DumpFrame(ctk.CTkFrame):
@@ -68,6 +69,10 @@ class DumpFrame(ctk.CTkFrame):
         # Set test question
         self.tb_raw_question.insert("0.0", text=example_question)
 
+        # Answer variables
+        self.rb_answer = ctk.IntVar(value=None)
+        self.chb_answer = ctk.IntVar(value=None)
+
     def on_tb_question_change(self, event):
         flag = self.tb_raw_question.edit_modified()
         if flag:
@@ -81,13 +86,15 @@ class DumpFrame(ctk.CTkFrame):
         self.clear_answers()
         if answers:
             i = 0
-            for k in answers:
-                _ = None
-                if q_type == 0:
-                    _ = ctk.CTkRadioButton(self.fr_fin_answers, value=i, text=k)
-                else:
+            if q_type == 0:     # Single chose, Radio Buttons
+                for k in answers:
+                    _ = ctk.CTkRadioButton(self.fr_fin_answers, value=i, text=k, variable=self.rb_answer)
+                    _.pack(anchor=ctk.W, padx=5, pady=(20, 0))
+                self.rb_answer = valid_answer[0] if valid_answer else None
+            else:               # Multi chose, Check Boxes
+                for k in answers:
                     _ = ctk.CTkCheckBox(self.fr_fin_answers, text=k)
-                _.pack(anchor=ctk.W, padx=5, pady=(20, 0))
+                    _.pack(anchor=ctk.W, padx=5, pady=(20, 0))
             i += 1
 
     def clear_answers(self):

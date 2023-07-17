@@ -13,19 +13,19 @@ class ExamSettingsFrame(ctk.CTkFrame):
         self.radiobutton_frame = ctk.CTkFrame(self, width=500)
         self.radiobutton_frame.pack(pady=5, side=ctk.LEFT, anchor=ctk.N)
 
-        self.rd_timer = ctk.IntVar(value=1)
+        self.rb_timer = ctk.IntVar(value=1)
         self.label_radio_group = ctk.CTkLabel(master=self.radiobutton_frame, text="Timer")
         self.label_radio_group.pack(anchor=ctk.W, padx=10, pady=5)
-        self.radio_button_1 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rd_timer,
+        self.radio_button_1 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rb_timer,
                                                  value=0, text="30 sec per question")
         self.radio_button_1.pack(anchor=ctk.W, padx=10, pady=5)
-        self.radio_button_2 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rd_timer,
+        self.radio_button_2 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rb_timer,
                                                  value=1, text="60 sec per question")
         self.radio_button_2.pack(anchor=ctk.W, padx=10, pady=5)
-        self.radio_button_3 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rd_timer,
+        self.radio_button_3 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rb_timer,
                                                  value=2, text="90 sec per question")
         self.radio_button_3.pack(anchor=ctk.W, padx=10, pady=5)
-        self.radio_button_4 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rd_timer,
+        self.radio_button_4 = ctk.CTkRadioButton(master=self.radiobutton_frame, variable=self.rb_timer,
                                                  value=3, text="No timer")
         self.radio_button_4.pack(anchor=ctk.W, padx=10, pady=5)
 
